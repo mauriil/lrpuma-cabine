@@ -1,13 +1,11 @@
-import './App.css';
+import styles from './App.module.css';
 import FlightIndicators from './components/FlightIndicators/FlightIndicators';
 
 function App() {
   return (
-    <div className="parent">
-      <FlightIndicators className="div1"/>
-      <FlightIndicators className="div2 "/>
-      <FlightIndicators className="div3"/>
-      <FlightIndicators className="div4"/>
+    <div className={styles.gridContainer}>
+      <FlightIndicators className={styles.div1}/>
+      <div className={styles.div2}>MAP GOES HERE</div>
     </div>
   );
 }
