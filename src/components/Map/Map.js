@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Map.module.css'
 import { GoogleMap, InfoWindow, LoadScript, Marker } from "@react-google-maps/api";
 import { useState } from 'react';
 
@@ -40,11 +39,6 @@ const Map = () => {
       height: "25rem",
   }
 
-  const center = {
-    lat: 28.625485,
-      lng: 79.821091
-  }
-
   const mapClicked = (event) => { 
       console.log(event.latLng.lat(), event.latLng.lng()) 
   }
@@ -64,10 +58,10 @@ const Map = () => {
           <GoogleMap 
               mapContainerStyle={containerStyle} 
               center={initialMarkers[1].position} 
-              zoom={15}
+              zoom={16}
               onClick={mapClicked}
           >
-              <Marker position={initialMarkers[1].position} />
+              <Marker position={initialMarkers[1].position} icon="https://s3.amazonaws.com/console.rhebus.works/red_dot.png" />
           </GoogleMap>
       </LoadScript>
   );

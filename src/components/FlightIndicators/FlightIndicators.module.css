@@ -4,7 +4,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: auto auto auto auto;
+    gap: 0px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     width: 100vw;
     background-color: grey;
 }

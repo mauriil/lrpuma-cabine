@@ -1,15 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './NumberIndicators.module.css';
+import React from "react";
+import PropTypes from "prop-types";
+import styles from './NumberIndicators.module.css'
 
-const NumberIndicators = () => (
-  <div className={styles.NumberIndicators}>
-    NumberIndicators Component
-  </div>
-);
+const Map = () => {
+  return (
+    <div className={styles.container}>
+      NumberIndicators component
+    </div>
+  );
+};
 
-NumberIndicators.propTypes = {};
+Map.propTypes = {};
 
-NumberIndicators.defaultProps = {};
+Map.defaultProps = {};
 
-export default NumberIndicators;
+export default Map;
