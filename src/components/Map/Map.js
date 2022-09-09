@@ -36,8 +36,8 @@ const Map = () => {
   const [markers, setMarkers] = useState(initialMarkers);
 
   const containerStyle = {
-      width: "600px",
-      height: "100%",
+      width: "100%",
+      height: "25rem",
   }
 
   const center = {

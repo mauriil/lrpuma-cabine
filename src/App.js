@@ -1,12 +1,18 @@
-import styles from './App.module.css';
-import FlightIndicators from './components/FlightIndicators/FlightIndicators';
-import Map from './components/Map/Map';
+import styles from "./App.module.css";
+import FlightIndicators from "./components/FlightIndicators/FlightIndicators";
+import Map from "./components/Map/Map";
+import NumberIndicators from "./components/NumberIndicators/NumberIndicators";
 
 function App() {
   return (
-    <div className={styles.gridContainer}>
-      <FlightIndicators className={styles.div1}/>
-      <Map className={styles.div2}/>
+    <div>
+      <div className={styles.gridContainer}>
+        <FlightIndicators />
+        <Map />
+      </div>
+      <div>
+        <NumberIndicators/>
+      </div>
     </div>
   );
 }
