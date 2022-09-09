@@ -1,7 +1,7 @@
 # LR PUMA CABINE
 React app to view flight stats and controls
 
-REACT VERSION: 16.13.0
+REACT VERSION: 17.0.1
 
 # TO DO's
 - Login screen
