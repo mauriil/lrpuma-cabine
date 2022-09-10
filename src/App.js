@@ -28,22 +28,23 @@ function App() {
       });
       client.on("message", (topic, message) => {
         const payload = { topic, message: message.toString() };
-        if (topic == '/FELIA/GPS') {
+        if (topic === '/FELIA/GPS') {
           const [latitude, longitude, satelites, altitude, course, speed] = message.toString().split(',');
           FlightIndicatorsNumbers.altitude = altitude;
           FlightIndicatorsNumbers.course = course;
           FlightIndicatorsNumbers.speed = speed;
-          setFlightIndicatorsNumbers(FlightIndicatorsNumbers);
-          setPosition({latitude, longitude});
+          position.latitude = latitude;
+          position.longitude = longitude;
         }
-        if (topic == '/FELIA/gyrox') {
+        if (topic === '/FELIA/gyrox') {
           FlightIndicatorsNumbers.gyroX = message.toString();
           setFlightIndicatorsNumbers(FlightIndicatorsNumbers);
         }
-        if (topic == '/FELIA/gyroy') {
+        if (topic === '/FELIA/gyroy') {
           FlightIndicatorsNumbers.gyroY = message.toString();
-          setFlightIndicatorsNumbers(FlightIndicatorsNumbers);
         }
+        setFlightIndicatorsNumbers({...FlightIndicatorsNumbers});
+        setPosition({...position});
         console.log("new message: ", payload);
       });
     }
