@@ -11,7 +11,6 @@ import {
 } from "react-typescript-flight-indicators";
 
 function FlightIndicators(props) {
-  console.log("🚀 ~ file: FlightIndicators.js ~ line 14 ~ FlightIndicators ~ props", props)
   return (
     <div className={styles.parent}>
       <div className={styles.div1}>

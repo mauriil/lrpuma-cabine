@@ -6,8 +6,8 @@
     "@react-google-maps/api": "^2.12.2",
     "google-map-react": "^2.2.0",
     "mqtt": "^4.3.7",
-    "react": "16.8.0",
-    "react-dom": "16.8.0",
+    "react": "16.10.0",
+    "react-dom": "16.10.0",
     "react-scripts": "4.0.3",
     "react-typescript-flight-indicators": "^1.0.3",
     "web-vitals": "^2.1.4"

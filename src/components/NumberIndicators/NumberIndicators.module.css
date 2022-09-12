@@ -1,0 +1,55 @@
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "t1 t2 t3 esc flap pitch row rudder"
+      "t4 t5 t6 groundDistance battery temperature humidity satellites"
+      "t7 t8 t9 pot2 pot3 clock clock clock";
+  }
+  
+  .t1 { grid-area: t1; }
+  
+  .t2 { grid-area: t2; }
+  
+  .t3 { grid-area: t3; }
+  
+  .t4 { grid-area: t4; }
+  
+  .t5 { grid-area: t5; }
+  
+  .t6 { grid-area: t6; }
+  
+  .t7 { grid-area: t7; }
+  
+  .t8 { grid-area: t8; }
+  
+  .t9 { grid-area: t9; }
+  
+  .esc { grid-area: esc; }
+  
+  .flap { grid-area: flap; }
+  
+  .groundDistance { grid-area: groundDistance; }
+  
+  .pot2 { grid-area: pot2; }
+  
+  .pot3 { grid-area: pot3; }
+  
+  .pitch { grid-area: pitch; }
+  
+  .row { grid-area: row; }
+  
+  .rudder { grid-area: rudder; }
+  
+  .battery { grid-area: battery; }
+  
+  .satellites { grid-area: satellites; }
+  
+  .temperature { grid-area: temperature; }
+  
+  .humidity { grid-area: humidity; }
+  
+  .clock { grid-area: clock; }
+  
