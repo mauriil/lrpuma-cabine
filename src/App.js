@@ -9,6 +9,8 @@ const client = mqtt.connect("ws://143.198.182.161:8083/mqtt");
 function App() {
   const [FlightIndicatorsNumbers, setFlightIndicatorsNumbers] = React.useState({altitude: 0, course: 0, speed: 0, gyroX: 90, gyroY: 90});
   const [position, setPosition] = React.useState({latitude: 0, longitude: 0});
+  const [TurnCoordinator, setTurnCoordinator] = React.useState(0);
+  const [Variometer, setVariometer] = React.useState(0);
 
   useEffect(() => {
     if (client) {
@@ -18,6 +20,8 @@ function App() {
         client.subscribe("/FELIA/GPS");
         client.subscribe("/FELIA/gyrox");
         client.subscribe("/FELIA/gyroy");
+        client.subscribe("/FELIA/accelerationx");
+        client.subscribe("/FELIA/accelerationy");
       });
       client.on("error", (err) => {
         console.error("Connection error: ", err);
@@ -43,9 +47,15 @@ function App() {
         if (topic === '/FELIA/gyroy') {
           FlightIndicatorsNumbers.gyroY = message.toString();
         }
+        if (topic === '/FELIA/accelerationx') {
+          setTurnCoordinator(parseFloat(message.toString()));
+        }
+        if (topic === '/FELIA/accelerationy') {
+          console.log("new message: ", payload);
+          setVariometer(parseFloat(message.toString()));
+        }
         setFlightIndicatorsNumbers({...FlightIndicatorsNumbers});
         setPosition({...position});
-        console.log("new message: ", payload);
       });
     }
   }, [client]);
@@ -53,7 +63,7 @@ function App() {
   return (
     <div>
       <div className={styles.gridContainer}>
-        <FlightIndicators FlightIndicatorsNumbers={FlightIndicatorsNumbers} />
+        <FlightIndicators FlightIndicatorsNumbers={FlightIndicatorsNumbers} TurnCoordinator={TurnCoordinator} Variometer={Variometer} />
         <Map position={position} />
       </div>
       <div>

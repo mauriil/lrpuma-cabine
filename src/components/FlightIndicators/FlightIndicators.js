@@ -36,13 +36,13 @@ function FlightIndicators(props) {
       </div>
       <div className={styles.div5}>
         <TurnCoordinator
-          turn={(Math.random() - 0.5) * 120}
+          turn={parseFloat(props.TurnCoordinator)}
           showBox={false}
           size="200px"
         />
       </div>
       <div className={styles.div6}>
-        <Variometer vario={1500} showBox={false} size="200px" />
+        <Variometer vario={parseFloat(props.Variometer)} showBox={false} size="200px" />
       </div>
     </div>
   );
