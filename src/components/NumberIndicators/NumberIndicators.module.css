@@ -6,7 +6,7 @@
     grid-template-areas:
       "t1 t2 t3 esc flap pitch row rudder"
       "t4 t5 t6 groundDistance battery temperature humidity satellites"
-      "t7 t8 t9 pot2 pot3 clock clock clock";
+      "t7 t8 t9 pot2 pot3 pot4 clock clock";
   }
   
   .t1 { grid-area: t1; }
@@ -36,6 +36,8 @@
   .pot2 { grid-area: pot2; }
   
   .pot3 { grid-area: pot3; }
+
+  .pot4 { grid-area: pot4; }
   
   .pitch { grid-area: pitch; }
   

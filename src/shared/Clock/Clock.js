@@ -41,7 +41,7 @@ export const Clock = ({h24=true}) => {
         <div className='clock'>
             <div className='calendar'>
                 {
-                    days.map((value, index)=>(<Word key={value} value={value} hidden={index != day}/>))
+                    days.map((value, index)=>(<Word key={value} value={value} hidden={index !== day}/>))
                 }
             </div>
             <div className='row'>

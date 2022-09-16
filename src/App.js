@@ -7,10 +7,19 @@ const mqtt = require("mqtt");
 const client = mqtt.connect("ws://143.198.182.161:8083/mqtt");
 
 function App() {
-  const [FlightIndicatorsNumbers, setFlightIndicatorsNumbers] = React.useState({altitude: 0, course: 0, speed: 0, gyroX: 90, gyroY: 90});
-  const [position, setPosition] = React.useState({latitude: 0, longitude: 0});
+  const [FlightIndicatorsNumbers, setFlightIndicatorsNumbers] = React.useState({
+    altitude: 0,
+    course: 0,
+    speed: 0,
+    gyroX: 90,
+    gyroY: 90,
+  });
+  const [position, setPosition] = React.useState({ latitude: 0, longitude: 0 });
   const [TurnCoordinator, setTurnCoordinator] = React.useState(0);
   const [Variometer, setVariometer] = React.useState(0);
+  const [ToggleStatus, setToggleStatus] = React.useState(Array(9).fill(0));
+  const [Satelites, setSatelites] = React.useState(0);
+  const [MiscIndicators, setMiscIndicators] = React.useState([]);
 
   useEffect(() => {
     if (client) {
@@ -22,6 +31,22 @@ function App() {
         client.subscribe("/FELIA/gyroy");
         client.subscribe("/FELIA/accelerationx");
         client.subscribe("/FELIA/accelerationy");
+        client.subscribe("/FELIA/YAW");
+        client.subscribe("/FELIA/ROLL");
+        client.subscribe("/FELIA/RUDDER");
+        client.subscribe("/FELIA/ESC");
+        client.subscribe("/FELIA/POT_2");
+        client.subscribe("/FELIA/POT_3");
+        client.subscribe("/FELIA/POT_4");
+        client.subscribe("/FELIA/toggle_1");
+        client.subscribe("/FELIA/toggle_2");
+        client.subscribe("/FELIA/toggle_3");
+        client.subscribe("/FELIA/toggle_4");
+        client.subscribe("/FELIA/toggle_5");
+        client.subscribe("/FELIA/toggle_6");
+        client.subscribe("/FELIA/toggle_7");
+        client.subscribe("/FELIA/toggle_8");
+        client.subscribe("/FELIA/toggle_9");
       });
       client.on("error", (err) => {
         console.error("Connection error: ", err);
@@ -32,30 +57,33 @@ function App() {
       });
       client.on("message", (topic, message) => {
         const payload = { topic, message: message.toString() };
-        if (topic === '/FELIA/GPS') {
-          const [latitude, longitude, satelites, altitude, course, speed] = message.toString().split(',');
+        if (topic === "/FELIA/GPS") {
+          const [latitude, longitude, satelites, altitude, course, speed] =
+            message.toString().split(",");
           FlightIndicatorsNumbers.altitude = altitude;
           FlightIndicatorsNumbers.course = course;
           FlightIndicatorsNumbers.speed = speed;
           position.latitude = latitude;
           position.longitude = longitude;
+          setSatelites(satelites);
         }
-        if (topic === '/FELIA/gyrox') {
+        if (topic === "/FELIA/gyrox") {
           FlightIndicatorsNumbers.gyroX = message.toString();
           setFlightIndicatorsNumbers(FlightIndicatorsNumbers);
         }
-        if (topic === '/FELIA/gyroy') {
+        if (topic === "/FELIA/gyroy") {
           FlightIndicatorsNumbers.gyroY = message.toString();
         }
-        if (topic === '/FELIA/accelerationx') {
+        if (topic === "/FELIA/accelerationx") {
           setTurnCoordinator(parseFloat(message.toString()));
         }
-        if (topic === '/FELIA/accelerationy') {
+        if (topic === "/FELIA/accelerationy") {
           console.log("new message: ", payload);
           setVariometer(parseFloat(message.toString()));
         }
-        setFlightIndicatorsNumbers({...FlightIndicatorsNumbers});
-        setPosition({...position});
+        setFlightIndicatorsNumbers({ ...FlightIndicatorsNumbers });
+        setPosition({ ...position });
+
       });
     }
   }, [client]);
@@ -63,11 +91,19 @@ function App() {
   return (
     <div>
       <div className={styles.gridContainer}>
-        <FlightIndicators FlightIndicatorsNumbers={FlightIndicatorsNumbers} TurnCoordinator={TurnCoordinator} Variometer={Variometer} />
+        <FlightIndicators
+          FlightIndicatorsNumbers={FlightIndicatorsNumbers}
+          TurnCoordinator={TurnCoordinator}
+          Variometer={Variometer}
+        />
         <Map position={position} />
       </div>
-      <div>
-        <NumberIndicators />
+      <div className={styles.numbersContainer}>
+        <NumberIndicators
+          ToggleStatus={ToggleStatus}
+          Satelites={Satelites}
+          MiscIndicators={MiscIndicators}
+        />
       </div>
     </div>
   );

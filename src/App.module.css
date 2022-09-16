@@ -37,4 +37,10 @@
 .gridContainer {
   display: flex;
   width: 100%;
+  top: 30px;
+}
+.numbersContainer {
+  position: flex;
+    bottom: 30px;
+    width: 100%;
 }
