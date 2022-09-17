@@ -7,6 +7,7 @@ const mqtt = require("mqtt");
 const client = mqtt.connect("ws://143.198.182.161:8083/mqtt");
 
 function App() {
+  const toggleReGexTopic = new RegExp("/FELIA/toggle");
   const [FlightIndicatorsNumbers, setFlightIndicatorsNumbers] = React.useState({
     altitude: 0,
     course: 0,
@@ -80,6 +81,11 @@ function App() {
         if (topic === "/FELIA/accelerationy") {
           console.log("new message: ", payload);
           setVariometer(parseFloat(message.toString()));
+        }
+        if(!!topic.match(toggleReGexTopic)){
+          const toggleNumber = parseInt(topic.split("/")[2].slice(-1)) - 1  // Number of toggle
+          ToggleStatus[toggleNumber] = message.toString() === "1" ? true : false;
+          setToggleStatus(...ToggleStatus);
         }
         setFlightIndicatorsNumbers({ ...FlightIndicatorsNumbers });
         setPosition({ ...position });

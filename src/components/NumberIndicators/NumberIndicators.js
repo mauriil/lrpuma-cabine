@@ -9,15 +9,15 @@ import DigitalNumber from "../../shared/DigitalNumber/DigitalNumber";
 function NumberIndicators (props){
   return (
     <div className={styles.container}>
-      <div className={styles.t1}><Toggle title="Toggle1"/></div>
-      <div className={styles.t2}><Toggle title="Toggle2"/></div>
-      <div className={styles.t3}><Toggle title="Toggle3"/></div>
-      <div className={styles.t4}><Toggle title="Toggle4"/></div>
-      <div className={styles.t5}><Toggle title="Toggle5"/></div>
-      <div className={styles.t6}><Toggle title="Toggle6"/></div>
-      <div className={styles.t7}><Toggle title="Toggle7"/></div>
-      <div className={styles.t8}><Toggle title="Toggle8"/></div>
-      <div className={styles.t9}><Toggle title="Toggle9"/></div>
+      <div className={styles.t1}><Toggle title="Toggle1" active={props.ToggleStatus[0]} /></div>
+      <div className={styles.t2}><Toggle title="Toggle2" active={props.ToggleStatus[1]} /></div>
+      <div className={styles.t3}><Toggle title="Toggle3" active={props.ToggleStatus[2]} /></div>
+      <div className={styles.t4}><Toggle title="Toggle4" active={props.ToggleStatus[3]} /></div>
+      <div className={styles.t5}><Toggle title="Toggle5" active={props.ToggleStatus[4]} /></div>
+      <div className={styles.t6}><Toggle title="Toggle6" active={props.ToggleStatus[5]} /></div>
+      <div className={styles.t7}><Toggle title="Toggle7" active={props.ToggleStatus[6]} /></div>
+      <div className={styles.t8}><Toggle title="Toggle8" active={props.ToggleStatus[7]} /></div>
+      <div className={styles.t9}><Toggle title="Toggle9" active={props.ToggleStatus[8]} /></div>
       <div className={styles.esc}><DigitalNumber number={"--"} title="ESC"/></div>
       <div className={styles.flap}><DigitalNumber number={"--"} title="Flap"/></div>
       <div className={styles.groundDistance}><DigitalNumber number={"--"} title="Ground"/></div>
