@@ -6,8 +6,8 @@ function Toggle(props) {
   return (
     <div className="toggleWrapper">
       {props.title}
-  <input type="checkbox" name={props.title} className="mobileToggle" id={props.title} checked={props.active}/>
-  <label for={props.title}/>
+  <input type="checkbox" name={props.title} className="mobileToggle" id={props.title} checked={props.active} readOnly={true}/>
+  <label htmlFor={props.title}/>
 </div>
   );
 };

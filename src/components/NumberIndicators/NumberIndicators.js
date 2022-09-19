@@ -28,7 +28,7 @@ function NumberIndicators (props){
       <div className={styles.row}><DigitalNumber number={"--"} title="Row"/></div>
       <div className={styles.rudder}><DigitalNumber number={"--"} title="Rudder"/></div>
       <div className={styles.battery}><DigitalNumber number={"--"} title="Batt"/></div>
-      <div className={styles.satellites}><DigitalNumber number={"--"} title="SAT"/></div>
+      <div className={styles.satellites}><DigitalNumber number={props.Satelites} title="SAT"/></div>
       <div className={styles.temperature}><DigitalNumber number={"--"} title="Temp"/></div>
       <div className={styles.humidity}><DigitalNumber number={"--"} title="Hum"/></div>
       <div className={styles.clock}><Clock/></div>

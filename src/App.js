@@ -79,13 +79,13 @@ function App() {
           setTurnCoordinator(parseFloat(message.toString()));
         }
         if (topic === "/FELIA/accelerationy") {
-          console.log("new message: ", payload);
           setVariometer(parseFloat(message.toString()));
         }
         if(!!topic.match(toggleReGexTopic)){
+          console.log("new message: ", payload);
           const toggleNumber = parseInt(topic.split("/")[2].slice(-1)) - 1  // Number of toggle
-          ToggleStatus[toggleNumber] = message.toString() === "1" ? true : false;
-          setToggleStatus(...ToggleStatus);
+          ToggleStatus[toggleNumber] = message.toString() === "1" ? 1 : 0;
+          setToggleStatus([...ToggleStatus]);
         }
         setFlightIndicatorsNumbers({ ...FlightIndicatorsNumbers });
         setPosition({ ...position });
