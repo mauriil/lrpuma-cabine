@@ -7,6 +7,7 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import { useState } from "react";
+import "./Map.css"
 
 function Map (props) {
   const [activeInfoWindow, setActiveInfoWindow] = useState("");

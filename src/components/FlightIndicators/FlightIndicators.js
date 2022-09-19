@@ -16,7 +16,7 @@ function FlightIndicators(props) {
       <div className={styles.div1}>
         <HeadingIndicator
           heading={parseInt(props.FlightIndicatorsNumbers.course)}
-          showBox={false}
+          showBox={true}
           size="200px"
         />
       </div>
@@ -26,22 +26,22 @@ function FlightIndicators(props) {
       <div className={styles.div3}>
         <Altimeter
           altitude={parseInt(props.FlightIndicatorsNumbers.altitude)}
-          showBox={false}
+          showBox={true}
           size="200px"
         />
       </div>
       <div className={styles.div4}>
-        <AttitudeIndicator roll={parseFloat(props.FlightIndicatorsNumbers.gyroX)} pitch={parseFloat(props.FlightIndicatorsNumbers.gyroY)} showBox={false} size="200px" />
+        <AttitudeIndicator roll={parseFloat(props.FlightIndicatorsNumbers.gyroX)} pitch={parseFloat(props.FlightIndicatorsNumbers.gyroY)} showBox={true} size="200px" />
       </div>
       <div className={styles.div5}>
         <TurnCoordinator
           turn={parseFloat(props.TurnCoordinator)}
-          showBox={false}
+          showBox={true}
           size="200px"
         />
       </div>
       <div className={styles.div6}>
-        <Variometer vario={parseFloat(props.Variometer)} showBox={false} size="200px" />
+        <Variometer vario={parseFloat(props.Variometer)} showBox={true} size="200px" />
       </div>
     </div>
   );

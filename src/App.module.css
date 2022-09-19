@@ -36,11 +36,19 @@
 
 .gridContainer {
   display: flex;
-  width: 100%;
+  width: 99%;
   top: 30px;
 }
+
 .numbersContainer {
   position: flex;
-    bottom: 30px;
-    width: 100%;
+  bottom: 30px;
+  width: 99%;
+}
+
+html {
+  margin-top: 15px;
+  background-color: #0d1621;
+  max-width: 100%;
+  overflow-x: hidden;
 }

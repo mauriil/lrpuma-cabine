@@ -18,13 +18,10 @@
 }
 .toggleWrapper {
   margin: auto;
-  padding: 20px;
   width: 100%;
-  height: 50%;
-  border: 1px solid lightgray;
-  margin-top: 20px;
+  margin-top: 5px;
   border-radius: 5px;
-  background: white;
+  background: #0d1621;
 }
 .toggleWrapper input.mobileToggle {
   opacity: 0;
