@@ -4,8 +4,8 @@
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-      "t1 t2 t3 esc flap pitch row rudder"
-      "t4 t5 t6 groundDistance battery temperature humidity satellites"
+      "t1 t2 t3 esc battery pitch row rudder"
+      "t4 t5 t6 groundDistance pressure temperature humidity satellites"
       "t7 t8 t9 pot2 pot3 pot4 clock clock";
   }
   
@@ -29,7 +29,7 @@
   
   .esc { grid-area: esc; }
   
-  .flap { grid-area: flap; }
+  .battery { grid-area: battery; }
   
   .groundDistance { grid-area: groundDistance; }
   
@@ -45,7 +45,7 @@
   
   .rudder { grid-area: rudder; }
   
-  .battery { grid-area: battery; }
+  .pressure { grid-area: pressure; }
   
   .satellites { grid-area: satellites; }
   

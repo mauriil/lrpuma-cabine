@@ -38,7 +38,7 @@ function Map (props) {
         center={{lat: parseFloat(props.position.latitude), lng: parseFloat(props.position.longitude)}}
         zoom={16}
         onClick={mapClicked}
-      >
+        >
         <Marker
           position={{lat: parseFloat(props.position.latitude), lng: parseFloat(props.position.longitude)}}
           icon="https://s3.amazonaws.com/console.rhebus.works/red_dot.png"

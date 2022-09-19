@@ -20,7 +20,20 @@ function App() {
   const [Variometer, setVariometer] = React.useState(0);
   const [ToggleStatus, setToggleStatus] = React.useState(Array(9).fill(0));
   const [Satelites, setSatelites] = React.useState(0);
-  const [MiscIndicators, setMiscIndicators] = React.useState([]);
+  const [MiscIndicators, setMiscIndicators] = React.useState({
+    ESC: "--",
+    Ground: "--",
+    Pot2: "--",
+    Pot3: "--",
+    Pot4: "--",
+    Pitch: "--",
+    Roll: "--",
+    Rudder: "--",
+    Batt: "--",
+    Temp: "--",
+    Hum: "--",
+    Pressure: "--",
+  });
 
   useEffect(() => {
     if (client) {
@@ -39,6 +52,9 @@ function App() {
         client.subscribe("/FELIA/POT_2");
         client.subscribe("/FELIA/POT_3");
         client.subscribe("/FELIA/POT_4");
+        client.subscribe("/FELIA/temperature");
+        client.subscribe("/FELIA/pressure");
+        client.subscribe("/FELIA/altitude");
         client.subscribe("/FELIA/toggle_1");
         client.subscribe("/FELIA/toggle_2");
         client.subscribe("/FELIA/toggle_3");
@@ -57,11 +73,12 @@ function App() {
         console.log("re conecting");
       });
       client.on("message", (topic, message) => {
-        const payload = { topic, message: message.toString() };
+        // TO DEBUG MSGS:
+        // const payload = { topic, message: message.toString() };
+        // console.log("new message: ", payload);
         if (topic === "/FELIA/GPS") {
           const [latitude, longitude, satelites, altitude, course, speed] =
             message.toString().split(",");
-          FlightIndicatorsNumbers.altitude = altitude;
           FlightIndicatorsNumbers.course = course;
           FlightIndicatorsNumbers.speed = speed;
           position.latitude = latitude;
@@ -70,7 +87,6 @@ function App() {
         }
         if (topic === "/FELIA/gyrox") {
           FlightIndicatorsNumbers.gyroX = message.toString();
-          setFlightIndicatorsNumbers(FlightIndicatorsNumbers);
         }
         if (topic === "/FELIA/gyroy") {
           FlightIndicatorsNumbers.gyroY = message.toString();
@@ -82,11 +98,42 @@ function App() {
           setVariometer(parseFloat(message.toString()));
         }
         if(!!topic.match(toggleReGexTopic)){
-          console.log("new message: ", payload);
           const toggleNumber = parseInt(topic.split("/")[2].slice(-1)) - 1  // Number of toggle
           ToggleStatus[toggleNumber] = message.toString() === "1" ? 1 : 0;
           setToggleStatus([...ToggleStatus]);
         }
+        if (topic === "/FELIA/YAW") {
+          MiscIndicators.Pitch = message.toString();
+        }
+        if (topic === "/FELIA/ROLL") {
+          MiscIndicators.Roll = message.toString();
+        }
+        if (topic === "/FELIA/RUDDER") {
+          MiscIndicators.Rudder = message.toString();
+        }
+        if (topic === "/FELIA/ESC") {
+          MiscIndicators.ESC = message.toString();
+        }
+        if (topic === "/FELIA/POT_2") {
+          MiscIndicators.Pot2 = message.toString();
+        }
+        if (topic === "/FELIA/POT_3") {
+          MiscIndicators.Pot3 = message.toString();
+        }
+        if (topic === "/FELIA/POT_4") {
+          MiscIndicators.Pot4 = message.toString();
+        }
+        if (topic === "/FELIA/temperature") {
+          MiscIndicators.Temp = message.toString();
+        }
+        if (topic === "/FELIA/pressure") {
+          MiscIndicators.Pressure = message.toString();
+        }
+        if (topic === "/FELIA/altitude") {
+          FlightIndicatorsNumbers.altitude = message.toString();
+        }
+        
+        setMiscIndicators({...MiscIndicators})
         setFlightIndicatorsNumbers({ ...FlightIndicatorsNumbers });
         setPosition({ ...position });
 
